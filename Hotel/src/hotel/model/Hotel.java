@@ -53,7 +53,56 @@ public class Hotel implements HotelInterfejs {
 	 */
 	@Override
 	public void vratiSveSobe() {
-		
+
+		LinkedList<Rezervacija> listaSoba = new LinkedList<Rezervacija>();
+
+		try {
+			Connection con = connector.connect();
+			String query = "SELECT * FROM soba";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				int idSobe = rs.getInt(1);
+				PreparedStatement ps2 = con.prepareStatement("SELECT * FROM rezervacija");
+				ResultSet rs2 = ps2.executeQuery();
+				while (rs2.next()) {
+					int rezSobeID = rs2.getInt(2);
+					if (idSobe == rezSobeID) {
+						Rezervacija rezSobe = new Rezervacija();
+						rezSobe.setIdRezervacije(rs2.getInt(1));
+						rezSobe.setIdSobe(rs2.getInt(2));
+						rezSobe.setImeGosta(rs2.getString(3));
+						rezSobe.setPrezimeGosta(rs2.getString(4));
+
+						GregorianCalendar datumOd = new GregorianCalendar();
+						datumOd.setTime(rs2.getDate(5));
+						rezSobe.setDatumOd(datumOd);
+
+						GregorianCalendar datumDo = new GregorianCalendar();
+						datumOd.setTime(rs2.getDate(6));
+						rezSobe.setDatumDo(datumDo);
+						listaSoba.add(rezSobe);
+
+					}
+				}
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		for (int i = 0; i < listaSoba.size(); i++) {
+			System.out.println(listaSoba.get(i).getIdSobe() + " " + listaSoba.get(i).getImeGosta() + " "
+					+ listaSoba.get(i).getPrezimeGosta() + " "
+					+ listaSoba.get(i).getDatumOd().get(GregorianCalendar.DAY_OF_MONTH) + '.'
+					+ (listaSoba.get(i).getDatumOd().get(GregorianCalendar.MONTH) + 1) + '.'
+					+ listaSoba.get(i).getDatumOd().get(GregorianCalendar.YEAR) + '-'
+					+ listaSoba.get(i).getDatumDo().get(GregorianCalendar.DAY_OF_MONTH) + '.'
+					+ (listaSoba.get(i).getDatumDo().get(GregorianCalendar.MONTH) + 1) + '.'
+					+ listaSoba.get(i).getDatumDo().get(GregorianCalendar.YEAR));
+		}
+
 	}
 
 	/*
@@ -96,9 +145,9 @@ public class Hotel implements HotelInterfejs {
 	public void vratiSprat(int sprat) {
 
 	}
-	
+
 	public static void main(String[] args) {
-		Hotel h=new Hotel();
+		Hotel h = new Hotel();
 		h.vratiSveSobe();
 	}
 
