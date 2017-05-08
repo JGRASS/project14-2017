@@ -7,6 +7,18 @@ public class Soba {
 	int sprat;
 	boolean terasa;
 
+	public Soba() {
+	}
+
+	public Soba(int idSobe, int brojKreveta, int cena, int sprat, boolean terasa) {
+		super();
+		this.idSobe = idSobe;
+		this.brojKreveta = brojKreveta;
+		this.cena = cena;
+		this.sprat = sprat;
+		this.terasa = terasa;
+	}
+
 	public int getIdSobe() {
 		return idSobe;
 	}
