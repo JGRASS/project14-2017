@@ -24,7 +24,8 @@ public interface HotelInterfejs {
 	public LinkedList<Soba> vratiSaTerasom() throws SQLException;
 
 	public LinkedList<Soba> vratiSaKrevetom(int brKreveta) throws SQLException;
-
+	
 	public LinkedList<Soba> vratiSprat(int sprat) throws SQLException;
+
 
 }

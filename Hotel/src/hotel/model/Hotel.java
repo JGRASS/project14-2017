@@ -28,8 +28,8 @@ public class Hotel implements HotelInterfejs {
 	 * @see hotel.interfejs.HotelInterfejs#rezervisi(int)
 	 */
 	@Override
-	public int rezervisiSobu(int idSobe, String ime, String prezime, GregorianCalendar datumOd,
-			GregorianCalendar datumDo) throws SQLException {
+	public int rezervisiSobu(int idSobe, String ime, String prezime, GregorianCalendar datumOd, GregorianCalendar datumDo) throws SQLException {
+
 		Connection conn = connector.connect();
 		java.sql.Date datOd = new java.sql.Date(datumOd.getTimeInMillis());
 		java.sql.Date datDo = new java.sql.Date(datumOd.getTimeInMillis());
@@ -196,5 +196,7 @@ public class Hotel implements HotelInterfejs {
 		rs.close();
 		return sobe;
 	}
+
+	
 
 }
