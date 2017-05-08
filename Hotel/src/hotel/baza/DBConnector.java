@@ -9,6 +9,7 @@ import java.sql.SQLException;
  *
  */
 public class DBConnector {
+
 	Connection con = null;
 
 	String driver = "com.mysql.jdbc.Driver";
