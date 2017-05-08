@@ -1,7 +1,10 @@
 package hotel;
 
 import java.util.GregorianCalendar;
-
+/**
+ * @author jelica
+ *
+ */
 public class Rezervacija {
 	int idRezervacije;
 	int idSobe;

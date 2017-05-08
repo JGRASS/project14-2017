@@ -1,7 +1,10 @@
 package hotel.interfejs;
 
 import java.util.GregorianCalendar;
-
+/**
+ * @author veljko
+ *
+ */
 public interface HotelInterfejs {
 
 	public void rezervisi(int idSobe);

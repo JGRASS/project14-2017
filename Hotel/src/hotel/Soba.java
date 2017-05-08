@@ -1,5 +1,8 @@
 package hotel;
-
+/**
+ * @author jelica
+ *
+ */
 public class Soba {
 	int idSobe;
 	int brojKreveta;
