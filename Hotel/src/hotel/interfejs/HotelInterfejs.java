@@ -1,6 +1,9 @@
 package hotel.interfejs;
 
 import java.util.GregorianCalendar;
+import java.util.LinkedList;
+
+import hotel.SobaPodaci;
 /**
  * @author veljko
  *
@@ -11,7 +14,7 @@ public interface HotelInterfejs {
 
 	public void otkazi(int idRezervacije);
 
-	public void vratiSveSobe();
+	public LinkedList<SobaPodaci> vratiSveSobe();
 
 	public void izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta);
 

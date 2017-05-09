@@ -13,6 +13,7 @@ import java.util.LinkedList;
 
 import hotel.Rezervacija;
 import hotel.Soba;
+import hotel.SobaPodaci;
 import hotel.baza.DBConnector;
 import hotel.interfejs.HotelInterfejs;
 
@@ -52,10 +53,10 @@ public class Hotel implements HotelInterfejs {
 	 * @see hotel.interfejs.HotelInterfejs#vratiSveSobe()
 	 */
 	@Override
-	public void vratiSveSobe() {
+	public LinkedList<SobaPodaci> vratiSveSobe() {
 
-		LinkedList<Rezervacija> listaSoba = new LinkedList<Rezervacija>();
-
+		LinkedList<SobaPodaci> listaSoba = new LinkedList<SobaPodaci>();
+		
 		try {
 			Connection con = connector.connect();
 			String query = "SELECT * FROM soba";
@@ -65,12 +66,18 @@ public class Hotel implements HotelInterfejs {
 				int idSobe = rs.getInt(1);
 				PreparedStatement ps2 = con.prepareStatement("SELECT * FROM rezervacija");
 				ResultSet rs2 = ps2.executeQuery();
+				SobaPodaci rezSobe = new SobaPodaci();
+				rezSobe.setBrojKreveta(rs.getInt(2));
+				rezSobe.setCena(rs.getInt(3));
+				rezSobe.setSprat(rs.getInt(4));
+				rezSobe.setTerasa(rs.getBoolean(5));
+				rezSobe.setIdSobe(rs.getInt(1));
+
 				while (rs2.next()) {
 					int rezSobeID = rs2.getInt(2);
 					if (idSobe == rezSobeID) {
-						Rezervacija rezSobe = new Rezervacija();
+
 						rezSobe.setIdRezervacije(rs2.getInt(1));
-						rezSobe.setIdSobe(rs2.getInt(2));
 						rezSobe.setImeGosta(rs2.getString(3));
 						rezSobe.setPrezimeGosta(rs2.getString(4));
 
@@ -81,28 +88,16 @@ public class Hotel implements HotelInterfejs {
 						GregorianCalendar datumDo = new GregorianCalendar();
 						datumOd.setTime(rs2.getDate(6));
 						rezSobe.setDatumDo(datumDo);
-						listaSoba.add(rezSobe);
 
 					}
 				}
+				listaSoba.add(rezSobe);
 			}
-
+			con.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		for (int i = 0; i < listaSoba.size(); i++) {
-			System.out.println(listaSoba.get(i).getIdSobe() + " " + listaSoba.get(i).getImeGosta() + " "
-					+ listaSoba.get(i).getPrezimeGosta() + " "
-					+ listaSoba.get(i).getDatumOd().get(GregorianCalendar.DAY_OF_MONTH) + '.'
-					+ (listaSoba.get(i).getDatumOd().get(GregorianCalendar.MONTH) + 1) + '.'
-					+ listaSoba.get(i).getDatumOd().get(GregorianCalendar.YEAR) + '-'
-					+ listaSoba.get(i).getDatumDo().get(GregorianCalendar.DAY_OF_MONTH) + '.'
-					+ (listaSoba.get(i).getDatumDo().get(GregorianCalendar.MONTH) + 1) + '.'
-					+ listaSoba.get(i).getDatumDo().get(GregorianCalendar.YEAR));
-		}
-
+		return listaSoba;
 	}
 
 	/*
