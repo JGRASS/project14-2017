@@ -24,11 +24,6 @@ import hotel.interfejs.HotelInterfejs;
 
 public class Hotel implements HotelInterfejs {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#rezervisi(int)
-	 */
 
 	public static DBConnector connector = new DBConnector();
 
@@ -37,11 +32,6 @@ public class Hotel implements HotelInterfejs {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#otkazi(int)
-	 */
 	@Override
 	public void otkazi(int idRezervacije) {
 
@@ -153,31 +143,16 @@ public class Hotel implements HotelInterfejs {
 		return slobodneSobe;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSaTerasom()
-	 */
 	@Override
 	public void vratiSaTerasom() {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSaKrevetom(int)
-	 */
 	@Override
 	public void vratiSaKrevetom(int brKreveta) {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSprat(int)
-	 */
 	@Override
 	public void vratiSprat(int sprat) {
 
