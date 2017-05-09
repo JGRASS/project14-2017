@@ -9,27 +9,27 @@ public class Soba {
 	/**
 	 * Jedinstveni broj sobe
 	 */
-	int idSobe;
+	private int idSobe;
 	
 	/**
 	 * Broj kreveta u sobi
 	 */
-	int brojKreveta;
+	private int brojKreveta;
 	
 	/**
 	 * Cena sobe po nocenju
 	 */
-	int cena;
+	private int cena;
 	
 	/**
 	 * Sprat na kome je soba
 	 */
-	int sprat;
+	private int sprat;
 	
 	/**
 	 * Da li soba ima terasu, true ako ima, false ako nema
 	 */
-	boolean terasa;
+	private boolean terasa;
 	
 	/**
 	 * prazan konstruktor sobe

@@ -10,32 +10,32 @@ public class Rezervacija {
 	/**
 	 * Jedinstveni broj rezervacije
 	 */
-	int idRezervacije;
+	private int idRezervacije;
 	
 	/**
 	 * Jedinstveni broj sobe
 	 */
-	int idSobe;
+	private int idSobe;
 	
 	/**
 	 * Ime gosta koji rezervise sobu
 	 */
-	String imeGosta;
+	private String imeGosta;
 	
 	/**
 	 * Prezime gosta koji rezervise sobu
 	 */
-	String prezimeGosta;
+	private String prezimeGosta;
 	
 	/**
 	 * Pocetak rezervacije
 	 */
-	GregorianCalendar datumOd;
+	private GregorianCalendar datumOd;
 	
 	/**
 	 * Kraj rezervacije
 	 */
-	GregorianCalendar datumDo;
+	private GregorianCalendar datumDo;
 	
 	/**
 	 * prazan konstruktor rezervacije
