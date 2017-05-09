@@ -78,22 +78,11 @@ public class Hotel implements HotelInterfejs {
 		ps.close();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSveSobe()
-	 */
 	@Override
 	public void vratiSveSobe() {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#izlistaj(java.util.GregorianCalendar,
-	 * java.util.GregorianCalendar, int)
-	 */
 	@Override
 	public void izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta) {
 
