@@ -4,20 +4,16 @@
 package hotel.model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
-import hotel.Rezervacija;
 import hotel.Soba;
 import hotel.SobaPodaci;
 import hotel.baza.DBConnector;
 import hotel.interfejs.HotelInterfejs;
-import hotel.Soba;
-import hotel.baza.DBConnector;
 
 /**
  * @author jelica&veljko

@@ -58,6 +58,7 @@ public class Soba {
 	}
 
 	public void setIdSobe(int idSobe) {
+		if(idSobe<0) throw new RuntimeException();
 		this.idSobe = idSobe;
 	}
 
@@ -66,6 +67,7 @@ public class Soba {
 	}
 
 	public void setBrojKreveta(int brojKreveta) {
+		if(brojKreveta<0) throw new RuntimeException();
 		this.brojKreveta = brojKreveta;
 	}
 
@@ -74,6 +76,7 @@ public class Soba {
 	}
 
 	public void setCena(int cena) {
+		if(cena<0) throw new RuntimeException();
 		this.cena = cena;
 	}
 
@@ -82,6 +85,7 @@ public class Soba {
 	}
 
 	public void setSprat(int sprat) {
+		if(sprat<0) throw new RuntimeException();
 		this.sprat = sprat;
 	}
 

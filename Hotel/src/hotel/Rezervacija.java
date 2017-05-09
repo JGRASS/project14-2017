@@ -66,6 +66,7 @@ public class Rezervacija {
 	}
 
 	public void setIdRezervacije(int idRezervacije) {
+		if(idRezervacije<0) throw new RuntimeException();
 		this.idRezervacije = idRezervacije;
 	}
 
@@ -74,6 +75,7 @@ public class Rezervacija {
 	}
 
 	public void setIdSobe(int idSobe) {
+		if(idSobe<0) throw new RuntimeException();
 		this.idSobe = idSobe;
 	}
 
@@ -82,6 +84,7 @@ public class Rezervacija {
 	}
 
 	public void setImeGosta(String imeGosta) {
+		if(imeGosta.isEmpty()) throw new RuntimeException();
 		this.imeGosta = imeGosta;
 	}
 
@@ -90,6 +93,7 @@ public class Rezervacija {
 	}
 
 	public void setPrezimeGosta(String prezimeGosta) {
+		if(prezimeGosta.isEmpty()) throw new RuntimeException();
 		this.prezimeGosta = prezimeGosta;
 	}
 
