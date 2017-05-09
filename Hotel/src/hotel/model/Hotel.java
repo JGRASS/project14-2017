@@ -17,6 +17,7 @@ import hotel.interfejs.HotelInterfejs;
 
 /**
  * @author jelica&veljko
+ * 
  *
  */
 
