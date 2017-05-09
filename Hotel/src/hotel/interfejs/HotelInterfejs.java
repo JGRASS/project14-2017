@@ -5,9 +5,9 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 
 import hotel.Soba;
-
+import hotel.SobaPodaci;
 /**
- * @author veljko
+ * @author jelica&veljko
  *
  */
 public interface HotelInterfejs {
@@ -17,9 +17,9 @@ public interface HotelInterfejs {
 
 	public void otkaziRezervaciju(int idRezervacije) throws SQLException;
 
-	public void vratiSveSobe();
+	public LinkedList<SobaPodaci> vratiSveSobe();
 
-	public void izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta);
+	public LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta);
 
 	public LinkedList<Soba> vratiSaTerasom() throws SQLException;
 
