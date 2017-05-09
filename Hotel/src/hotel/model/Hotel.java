@@ -47,16 +47,16 @@ public class Hotel implements HotelInterfejs {
 
 	}
 
-	/*
-	 * (non-Javadoc)
+	/**
+	 * metoda za vracanje lista svih soba i rezervacija ukoliko ih ima
 	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSveSobe()
+	 * @return listaSoba - lista objekata klase SobaPodaci
 	 */
 	@Override
 	public LinkedList<SobaPodaci> vratiSveSobe() {
 
 		LinkedList<SobaPodaci> listaSoba = new LinkedList<SobaPodaci>();
-		
+
 		try {
 			Connection con = connector.connect();
 			String query = "SELECT * FROM soba";
@@ -86,7 +86,7 @@ public class Hotel implements HotelInterfejs {
 						rezSobe.setDatumOd(datumOd);
 
 						GregorianCalendar datumDo = new GregorianCalendar();
-						datumOd.setTime(rs2.getDate(6));
+						datumDo.setTime(rs2.getDate(6));
 						rezSobe.setDatumDo(datumDo);
 
 					}
@@ -100,15 +100,57 @@ public class Hotel implements HotelInterfejs {
 		return listaSoba;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#izlistaj(java.util.GregorianCalendar,
-	 * java.util.GregorianCalendar, int)
+	/**
+	 * metoda koja vraca listu soba koje su slobodne u odredjenom periodu i sa odgovarajucim
+	 * brojem kreveta
+	 * @return slobodneSobe - lista soba koje su slobodne
 	 */
 	@Override
-	public void izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta) {
+	public LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta) {
+		LinkedList<Soba> slobodneSobe = new LinkedList<Soba>();
+		boolean nemaRez = true;
+		try {
+			Connection con = connector.connect();
+			String query = "SELECT * FROM soba";
+			PreparedStatement ps = con.prepareStatement(query);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				if (rs.getInt(2) == brKreveta) {
+					nemaRez = true;
+					int idSobe = rs.getInt(1);
+					Soba rezSobe = new Soba();
+					rezSobe.setBrojKreveta(rs.getInt(2));
+					rezSobe.setCena(rs.getInt(3));
+					rezSobe.setSprat(rs.getInt(4));
+					rezSobe.setTerasa(rs.getBoolean(5));
+					rezSobe.setIdSobe(rs.getInt(1));
 
+					PreparedStatement ps2 = con.prepareStatement("SELECT * FROM rezervacija");
+					ResultSet rs2 = ps2.executeQuery();
+					while (rs2.next()) {
+						int rezSobeID = rs2.getInt(2);
+						if (idSobe == rezSobeID) {
+							nemaRez = false;
+
+							GregorianCalendar datOd = new GregorianCalendar();
+							datOd.setTime(rs2.getDate(5));
+
+							GregorianCalendar datDo = new GregorianCalendar();
+							datDo.setTime(rs2.getDate(6));
+
+							if ((datumDo.before(datOd) || datumOd.after(datDo)) && !slobodneSobe.contains(rezSobe)) {
+								slobodneSobe.add(rezSobe);
+							}
+						}
+					}
+					if (nemaRez == true)
+						slobodneSobe.add(rezSobe);
+				}
+			}
+			con.close();
+		} catch (SQLException e) {
+		}
+		return slobodneSobe;
 	}
 
 	/*
@@ -139,11 +181,6 @@ public class Hotel implements HotelInterfejs {
 	@Override
 	public void vratiSprat(int sprat) {
 
-	}
-
-	public static void main(String[] args) {
-		Hotel h = new Hotel();
-		h.vratiSveSobe();
 	}
 
 }
