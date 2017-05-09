@@ -1,18 +1,45 @@
 package hotel;
 /**
+ * Klasa koja predstavlja sobu
  * @author jelica
  *
  */
 public class Soba {
+	
+	/**
+	 * Jedinstveni broj sobe
+	 */
 	int idSobe;
+	
+	/**
+	 * Broj kreveta u sobi
+	 */
 	int brojKreveta;
+	
+	/**
+	 * Cena sobe po nocenju
+	 */
 	int cena;
+	
+	/**
+	 * Sprat na kome je soba
+	 */
 	int sprat;
+	
+	/**
+	 * Da li soba ima terasu, true ako ima, false ako nema
+	 */
 	boolean terasa;
-
+	
+	/**
+	 * prazan konstruktor sobe
+	 */
 	public Soba() {
 	}
-
+	
+	/**
+	 * konstruktor sobe sa svim atributima
+	 */
 	public Soba(int idSobe, int brojKreveta, int cena, int sprat, boolean terasa) {
 		super();
 		this.idSobe = idSobe;
@@ -22,6 +49,10 @@ public class Soba {
 		this.terasa = terasa;
 	}
 
+	/**
+	 * get i set metode za atribute sobe
+	 */
+	
 	public int getIdSobe() {
 		return idSobe;
 	}

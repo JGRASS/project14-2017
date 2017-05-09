@@ -22,10 +22,10 @@ public class Hotel implements HotelInterfejs {
 
 	public static DBConnector connector = new DBConnector();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#rezervisi(int)
+	/**
+	 * Metoda za rezervaciju sobe (sluzice da klikom na sobu u tabeli u GUI-ju rezervisemo sobu)
+	 * @return rez - idRezervacije
+	 * @throws SQLException 
 	 */
 	@Override
 	public int rezervisiSobu(int idSobe, String ime, String prezime, GregorianCalendar datumOd, GregorianCalendar datumDo) throws SQLException {
@@ -62,10 +62,9 @@ public class Hotel implements HotelInterfejs {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#otkazi(int)
+	/**
+	 * Metoda za otkazivanje rezervacije sobe (sluzice da klikom na sobu u tabeli u GUI-ju obrisemo rezervaciju)
+	 * @throws SQLException 
 	 */
 	@Override
 	public void otkaziRezervaciju(int idRezervacije) throws SQLException {
@@ -100,10 +99,10 @@ public class Hotel implements HotelInterfejs {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSaTerasom()
+	/**
+	 * Metoda za vracanje soba sa terasom
+	 * @return sobe - LinkedList soba sa terasom
+	 * @throws SQLException 
 	 */
 	@Override
 	public LinkedList<Soba> vratiSaTerasom() throws SQLException {
@@ -133,10 +132,10 @@ public class Hotel implements HotelInterfejs {
 
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSaKrevetom(int)
+	/**
+	 * Metoda za vracanje soba sa odredjenim brojem kreveta
+	 * @return sobe - LinkedList soba sa odredjenim brojem kreveta 
+	 * @throws SQLException 
 	 */
 	@Override
 	public LinkedList<Soba> vratiSaKrevetom(int brKreveta) throws SQLException {
@@ -165,10 +164,10 @@ public class Hotel implements HotelInterfejs {
 		return sobe;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see hotel.interfejs.HotelInterfejs#vratiSprat(int)
+	/**
+	 * Metoda za vracanje soba na odredjenom spratu
+	 * @return sobe - LinkedList soba na odredjenom spratu
+	 * @throws SQLException 
 	 */
 	@Override
 	public LinkedList<Soba> vratiSprat(int sprat) throws SQLException {

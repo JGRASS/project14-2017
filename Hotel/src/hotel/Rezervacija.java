@@ -2,20 +2,51 @@ package hotel;
 
 import java.util.GregorianCalendar;
 /**
+ * Klasa koja predstavlja rezervaciju sobe
  * @author jelica
  *
  */
 public class Rezervacija {
+	/**
+	 * Jedinstveni broj rezervacije
+	 */
 	int idRezervacije;
+	
+	/**
+	 * Jedinstveni broj sobe
+	 */
 	int idSobe;
+	
+	/**
+	 * Ime gosta koji rezervise sobu
+	 */
 	String imeGosta;
+	
+	/**
+	 * Prezime gosta koji rezervise sobu
+	 */
 	String prezimeGosta;
+	
+	/**
+	 * Pocetak rezervacije
+	 */
 	GregorianCalendar datumOd;
+	
+	/**
+	 * Kraj rezervacije
+	 */
 	GregorianCalendar datumDo;
-
+	
+	/**
+	 * prazan konstruktor rezervacije
+	 */
 	public Rezervacija() {
 	}
 
+	
+	/**
+	 * konstruktor rezervacije sa svim atributima
+	 */
 	public Rezervacija(int idRezervacije, int idSobe, String imeGosta, String prezimeGosta, GregorianCalendar datumOd,
 			GregorianCalendar datumDo) {
 		super();
@@ -27,6 +58,9 @@ public class Rezervacija {
 		this.datumDo = datumDo;
 	}
 
+	/**
+	 * get i set metode za atribute rezervacije
+	 */
 	public int getIdRezervacije() {
 		return idRezervacije;
 	}

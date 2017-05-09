@@ -5,9 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
+ * Klasa koja sluzi za vezu s bazom
+ * 
  * @author veljko
  *
  */
+
 public class DBConnector {
 
 	Connection con = null;
@@ -17,6 +20,10 @@ public class DBConnector {
 	String user = "HotelEmployee";
 	String pass = "asus";
 
+	/**
+	 * Metoda za povezivanje s bazom
+	 *@return con - vraca vezu, Connection 
+	 */
 	public Connection connect() throws SQLException {
 		try {
 			Class.forName(driver);
