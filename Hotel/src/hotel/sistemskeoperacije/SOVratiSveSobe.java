@@ -57,10 +57,11 @@ public class SOVratiSveSobe {
 						GregorianCalendar datumDo = new GregorianCalendar();
 						datumDo.setTime(rs2.getDate(6));
 						rezSobe.setDatumDo(datumDo);
-
+						listaSoba.add(rezSobe);
 					}
+					
 				}
-				listaSoba.add(rezSobe);
+				
 			}
 			con.close();
 		} catch (SQLException e) {

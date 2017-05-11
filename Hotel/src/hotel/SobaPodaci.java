@@ -132,8 +132,8 @@ public class SobaPodaci {
 	}
 
 	public String getDatumDoFancy() {
-		if (datumOd != null)
-			return format(datumOd);
+		if (datumDo != null)
+			return format(datumDo);
 		return "/";
 	}
 
