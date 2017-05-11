@@ -59,6 +59,7 @@ public class GlavniProzor extends JFrame {
 		try {
 			table = getTable();
 			scrollPane.setViewportView(table);
+			scrollPane.setViewportView(table);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
