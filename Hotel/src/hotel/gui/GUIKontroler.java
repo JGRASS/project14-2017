@@ -1,6 +1,9 @@
 package hotel.gui;
 
 import java.awt.EventQueue;
+import java.sql.SQLException;
+
+import hotel.model.Hotel;
 
 public class GUIKontroler {
 
@@ -20,6 +23,12 @@ public class GUIKontroler {
 				}
 			}
 		});
+	}
+	
+	public static void otkaziRezervaciju(int idRezervacije) throws SQLException {
+		Hotel hotel = new Hotel();
+		hotel.otkaziRezervaciju(idRezervacije);
+		glavniProzor.osveziTabelu();
 	}
 
 }

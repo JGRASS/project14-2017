@@ -40,13 +40,13 @@ public class SobaPodaciTableModel extends AbstractTableModel {
 		case 2:
 			return s.getSprat();
 		case 3:
-			return s.isTerasa();
+			if(s.isTerasa()) return "Ima"; else return "Nema";
 		case 4:
-			return s.getIdRezervacije();
+			if(s.getIdRezervacije()==0) return "Ne postoji"; else return s.getIdRezervacije();
 		case 5:
-			return s.getDatumOd();
+			return s.getDatumOdFancy();
 		case 6:
-			return s.getDatumDo();
+			return s.getDatumDoFancy();
 		default:
 			return "/";
 		}

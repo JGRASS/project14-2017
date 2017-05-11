@@ -7,21 +7,16 @@ import java.util.GregorianCalendar;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
-import hotel.gui.modeli.SobaPodaciTableModel;
 import hotel.gui.modeli.SobaTableModel;
 import hotel.model.Hotel;
 
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
-import java.awt.Label;
-import java.awt.Button;
 
 @SuppressWarnings("serial")
 public class RezervisiProzor extends JFrame {
@@ -34,7 +29,7 @@ public class RezervisiProzor extends JFrame {
 		JLabel lblOd = new JLabel("Od");
 		panel.add(lblOd);
 
-		final JComboBox comboBoxDanDatumOd = new JComboBox();
+		final JComboBox<Integer> comboBoxDanDatumOd = new JComboBox<Integer>();
 		panel.add(comboBoxDanDatumOd);
 		comboBoxDanDatumOd.addItem(1);
 		comboBoxDanDatumOd.addItem(2);
@@ -69,7 +64,7 @@ public class RezervisiProzor extends JFrame {
 		comboBoxDanDatumOd.addItem(30);
 		comboBoxDanDatumOd.addItem(31);
 
-		JComboBox comboBoxMesecDatumOd = new JComboBox();
+		JComboBox<Integer> comboBoxMesecDatumOd = new JComboBox<Integer>();
 		panel.add(comboBoxMesecDatumOd);
 		comboBoxMesecDatumOd.addItem(1);
 		comboBoxMesecDatumOd.addItem(2);
@@ -84,7 +79,7 @@ public class RezervisiProzor extends JFrame {
 		comboBoxMesecDatumOd.addItem(11);
 		comboBoxMesecDatumOd.addItem(12);
 
-		JComboBox comboBoxGodinaDatumOd = new JComboBox();
+		JComboBox<Integer> comboBoxGodinaDatumOd = new JComboBox<Integer>();
 		panel.add(comboBoxGodinaDatumOd);
 
 		comboBoxGodinaDatumOd.addItem(2017);
@@ -95,7 +90,7 @@ public class RezervisiProzor extends JFrame {
 		JLabel lblDo = new JLabel("Do");
 		panel.add(lblDo);
 
-		JComboBox comboBoxDanDatumDo = new JComboBox();
+		JComboBox<Integer> comboBoxDanDatumDo = new JComboBox<Integer>();
 		panel.add(comboBoxDanDatumDo);
 
 		comboBoxDanDatumDo.addItem(1);
@@ -131,7 +126,7 @@ public class RezervisiProzor extends JFrame {
 		comboBoxDanDatumDo.addItem(30);
 		comboBoxDanDatumDo.addItem(31);
 
-		JComboBox comboBoxMesecDatumDo = new JComboBox();
+		JComboBox<Integer> comboBoxMesecDatumDo = new JComboBox<Integer>();
 		panel.add(comboBoxMesecDatumDo);
 		
 		comboBoxMesecDatumDo.addItem(1);
@@ -146,7 +141,7 @@ public class RezervisiProzor extends JFrame {
 		comboBoxMesecDatumDo.addItem(10);
 		comboBoxMesecDatumDo.addItem(11);
 		comboBoxMesecDatumDo.addItem(12);
-		JComboBox comboBoxGodinaDatumDo = new JComboBox();
+		JComboBox<Integer> comboBoxGodinaDatumDo = new JComboBox<Integer>();
 		panel.add(comboBoxGodinaDatumDo);
 
 		comboBoxGodinaDatumDo.addItem(2017);
@@ -157,7 +152,7 @@ public class RezervisiProzor extends JFrame {
 		JLabel lblBrKreveta = new JLabel("Br. kreveta");
 		panel.add(lblBrKreveta);
 
-		JComboBox comboBoxBrojKreveta = new JComboBox();
+		JComboBox<Integer> comboBoxBrojKreveta = new JComboBox<Integer>();
 		panel.add(comboBoxBrojKreveta);
 		comboBoxBrojKreveta.addItem(1);
 		comboBoxBrojKreveta.addItem(2);

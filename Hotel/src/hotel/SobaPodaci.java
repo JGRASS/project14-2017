@@ -1,5 +1,6 @@
 package hotel;
 
+import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
 /**
@@ -57,7 +58,7 @@ public class SobaPodaci {
 	 */
 	public SobaPodaci() {
 	}
-	
+
 	/**
 	 * konstruktor sobe sa svim atributima
 	 */
@@ -76,9 +77,8 @@ public class SobaPodaci {
 		this.terasa = terasa;
 	}
 
-
 	/**
-	 * get i set metode 
+	 * get i set metode
 	 */
 	public int getIdRezervacije() {
 		return idRezervacije;
@@ -108,6 +108,19 @@ public class SobaPodaci {
 		return datumOd;
 	}
 
+	public static String format(GregorianCalendar calendar) {
+		SimpleDateFormat fmt = new SimpleDateFormat("dd-MMM-yyyy");
+		fmt.setCalendar(calendar);
+		String dateFormatted = fmt.format(calendar.getTime());
+		return dateFormatted;
+	}
+
+	public String getDatumOdFancy() {
+		if (datumOd != null)
+			return format(datumOd);
+		return "/";
+	}
+
 	public void setDatumOd(GregorianCalendar datumOd) {
 		if (datumOd == null)
 			throw new RuntimeException();
@@ -116,6 +129,12 @@ public class SobaPodaci {
 
 	public GregorianCalendar getDatumDo() {
 		return datumDo;
+	}
+
+	public String getDatumDoFancy() {
+		if (datumOd != null)
+			return format(datumOd);
+		return "/";
 	}
 
 	public void setDatumDo(GregorianCalendar datumDo) {
