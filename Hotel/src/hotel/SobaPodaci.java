@@ -191,4 +191,12 @@ public class SobaPodaci {
 		this.terasa = terasa;
 	}
 
+	@Override
+	public String toString() {
+		return "SobaPodaci [idRezervacije=" + idRezervacije + ", imeGosta=" + imeGosta + ", prezimeGosta="
+				+ prezimeGosta + ", datumOd=" + datumOd + ", datumDo=" + datumDo + ", idSobe=" + idSobe
+				+ ", brojKreveta=" + brojKreveta + ", cena=" + cena + ", sprat=" + sprat + ", terasa=" + terasa + "]";
+	}
+
+	
 }

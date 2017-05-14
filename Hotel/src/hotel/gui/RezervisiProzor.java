@@ -26,6 +26,7 @@ import java.awt.event.ActionEvent;
 @SuppressWarnings("serial")
 public class RezervisiProzor extends JFrame {
 	public RezervisiProzor() {
+		
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 680, 452);
 
@@ -219,6 +220,7 @@ public class RezervisiProzor extends JFrame {
 						int idSobe = (int) table.getValueAt(table.getSelectedRow(), 0);
 						int idRez = GUIKontroler.rezervisi(idSobe, ime, prezime, datumOd, datumDo);
 						JOptionPane.showMessageDialog(contentPane, "Uspesno ste rezervisali sobu na ime: "+ime+" "+prezime+" brojRezervacije: "+idRez);
+						
 						setVisible(false); // treba da se namesti da pri zatvaranju glavni prozor ostane aktivan
 					} catch (SQLException e1) {
 						e1.printStackTrace();

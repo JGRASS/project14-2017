@@ -32,19 +32,28 @@ public class SOVratiSveSobe {
 			PreparedStatement ps = con.prepareStatement(query);
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
+				boolean ubacena = false;
 				int idSobe = rs.getInt(1);
+				
+				SobaPodaci soba = new SobaPodaci();
+				soba.setIdSobe(rs.getInt(1));
+				soba.setBrojKreveta(rs.getInt(2));
+				soba.setCena(rs.getInt(3));
+				soba.setSprat(rs.getInt(4));
+				soba.setTerasa(rs.getBoolean(5));
+				
 				PreparedStatement ps2 = con.prepareStatement("SELECT * FROM rezervacija");
 				ResultSet rs2 = ps2.executeQuery();
-				SobaPodaci rezSobe = new SobaPodaci();
-				rezSobe.setBrojKreveta(rs.getInt(2));
-				rezSobe.setCena(rs.getInt(3));
-				rezSobe.setSprat(rs.getInt(4));
-				rezSobe.setTerasa(rs.getBoolean(5));
-				rezSobe.setIdSobe(rs.getInt(1));
-
+				
 				while (rs2.next()) {
 					int rezSobeID = rs2.getInt(2);
 					if (idSobe == rezSobeID) {
+						SobaPodaci rezSobe = new SobaPodaci();
+						rezSobe.setIdSobe(rs.getInt(1));
+						rezSobe.setBrojKreveta(rs.getInt(2));
+						rezSobe.setCena(rs.getInt(3));
+						rezSobe.setSprat(rs.getInt(4));
+						rezSobe.setTerasa(rs.getBoolean(5));
 
 						rezSobe.setIdRezervacije(rs2.getInt(1));
 						rezSobe.setImeGosta(rs2.getString(3));
@@ -57,11 +66,19 @@ public class SOVratiSveSobe {
 						GregorianCalendar datumDo = new GregorianCalendar();
 						datumDo.setTime(rs2.getDate(6));
 						rezSobe.setDatumDo(datumDo);
-						listaSoba.add(rezSobe);
+						listaSoba.addLast(rezSobe);
+						System.out.println(rezSobe);
+						ubacena = true;
 					}
+					
+				}
+				if(ubacena == false) {
+					listaSoba.add(soba);
 				}
 			}
 			con.close();
+			
 		return listaSoba;
 	}
+	
 }

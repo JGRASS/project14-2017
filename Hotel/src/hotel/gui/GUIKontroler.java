@@ -36,7 +36,10 @@ public class GUIKontroler {
 	
 	public static int rezervisi(int idSobe,String ime, String prezime, GregorianCalendar datumOd, GregorianCalendar datumDo) throws SQLException {
 		Hotel hotel = new Hotel();
-		return hotel.rezervisiSobu(idSobe, ime, prezime, datumOd, datumDo);
+		int rezervacija =  hotel.rezervisiSobu(idSobe, ime, prezime, datumOd, datumDo);
+		glavniProzor.osveziTabelu();
+		return rezervacija;
+		
 	}
 	
 	public static LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brojKreveta) throws SQLException {

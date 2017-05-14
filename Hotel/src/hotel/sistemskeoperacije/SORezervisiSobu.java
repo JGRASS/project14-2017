@@ -23,7 +23,7 @@ public class SORezervisiSobu {
 		DBConnector connector = new DBConnector();
 		Connection conn = connector.connect();
 		java.sql.Date datOd = new java.sql.Date(datumOd.getTimeInMillis());
-		java.sql.Date datDo = new java.sql.Date(datumOd.getTimeInMillis());
+		java.sql.Date datDo = new java.sql.Date(datumDo.getTimeInMillis());
 
 		String upit1 = "INSERT INTO Rezervacija(idSobe, imeGosta, prezimeGosta, datumOd, datumDo) VALUES(?, ?, ?, ?, ?)";
 
