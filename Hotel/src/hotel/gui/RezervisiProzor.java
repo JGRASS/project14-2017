@@ -249,7 +249,7 @@ public class RezervisiProzor extends JFrame {
 							Integer.parseInt(comboBoxDanDatumDo.getSelectedItem().toString()));
 					int brojKreveta = Integer.parseInt(comboBoxBrojKreveta.getSelectedItem().toString());
 
-					if (datumDo.before(datumOd) || datumOd.equals(datumDo)) {
+					if (datumDo.before(datumOd) || datumOd.equals(datumDo) || datumOd.before(new GregorianCalendar()) || datumDo.before(new GregorianCalendar())) {
 						JOptionPane.showMessageDialog(contentPane, "Neispravan unos datuma!", "GRESKA",
 								JOptionPane.ERROR_MESSAGE);
 						return;

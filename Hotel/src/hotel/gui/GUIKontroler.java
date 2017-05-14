@@ -28,10 +28,11 @@ public class GUIKontroler {
 		});
 	}
 	
-	public static void otkaziRezervaciju(int idRezervacije) throws SQLException {
+	public static boolean otkaziRezervaciju(int idRezervacije) throws SQLException {
 		Hotel hotel = new Hotel();
-		hotel.otkaziRezervaciju(idRezervacije);
+		boolean otkazana = hotel.otkaziRezervaciju(idRezervacije);
 		glavniProzor.osveziTabelu();
+		return otkazana;
 	}
 	
 	public static int rezervisi(int idSobe,String ime, String prezime, GregorianCalendar datumOd, GregorianCalendar datumDo) throws SQLException {

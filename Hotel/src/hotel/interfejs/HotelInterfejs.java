@@ -15,7 +15,7 @@ public interface HotelInterfejs {
 	public int rezervisiSobu(int idSobe, String ime, String prezime, GregorianCalendar datumOd,
 			GregorianCalendar datumDo) throws SQLException;
 
-	public void otkaziRezervaciju(int idRezervacije) throws SQLException;
+	public boolean otkaziRezervaciju(int idRezervacije) throws SQLException;
 
 	public LinkedList<SobaPodaci> vratiSveSobe() throws SQLException;
 

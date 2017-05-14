@@ -45,8 +45,8 @@ public class Hotel implements HotelInterfejs {
 	 * @throws SQLException
 	 */
 	@Override
-	public void otkaziRezervaciju(int idRezervacije) throws SQLException {
-		SOOtkaziRezervaciju.izvrsi(idRezervacije);
+	public boolean otkaziRezervaciju(int idRezervacije) throws SQLException {
+		return SOOtkaziRezervaciju.izvrsi(idRezervacije);
 	}
 
 	/**
