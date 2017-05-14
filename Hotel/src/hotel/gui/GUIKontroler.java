@@ -2,7 +2,10 @@ package hotel.gui;
 
 import java.awt.EventQueue;
 import java.sql.SQLException;
+import java.util.GregorianCalendar;
+import java.util.LinkedList;
 
+import hotel.Soba;
 import hotel.model.Hotel;
 
 public class GUIKontroler {
@@ -30,5 +33,17 @@ public class GUIKontroler {
 		hotel.otkaziRezervaciju(idRezervacije);
 		glavniProzor.osveziTabelu();
 	}
+	
+	public static int rezervisi(int idSobe,String ime, String prezime, GregorianCalendar datumOd, GregorianCalendar datumDo) throws SQLException {
+		Hotel hotel = new Hotel();
+		return hotel.rezervisiSobu(idSobe, ime, prezime, datumOd, datumDo);
+	}
+	
+	public static LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brojKreveta) throws SQLException {
+		Hotel hotel = new Hotel();
+		return hotel.izlistaj(datumOd, datumDo,brojKreveta);
+	}
+	
+	
 
 }

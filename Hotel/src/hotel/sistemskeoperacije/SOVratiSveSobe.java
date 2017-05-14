@@ -20,13 +20,13 @@ public class SOVratiSveSobe {
 	 * metoda za vracanje lista svih soba i rezervacija ukoliko ih ima
 	 * 
 	 * @return listaSoba - lista objekata klase SobaPodaci
+	 * @throws SQLException 
 	 */
-	public static LinkedList<SobaPodaci> izvrsi() {
+	public static LinkedList<SobaPodaci> izvrsi() throws SQLException {
 		DBConnector connector = new DBConnector();
 		
 		LinkedList<SobaPodaci> listaSoba = new LinkedList<SobaPodaci>();
 
-		try {
 			Connection con = connector.connect();
 			String query = "SELECT * FROM soba";
 			PreparedStatement ps = con.prepareStatement(query);
@@ -59,14 +59,9 @@ public class SOVratiSveSobe {
 						rezSobe.setDatumDo(datumDo);
 						listaSoba.add(rezSobe);
 					}
-					
 				}
-				
 			}
 			con.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 		return listaSoba;
 	}
 }

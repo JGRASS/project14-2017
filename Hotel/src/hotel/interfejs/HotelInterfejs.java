@@ -17,9 +17,9 @@ public interface HotelInterfejs {
 
 	public void otkaziRezervaciju(int idRezervacije) throws SQLException;
 
-	public LinkedList<SobaPodaci> vratiSveSobe();
+	public LinkedList<SobaPodaci> vratiSveSobe() throws SQLException;
 
-	public LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta);
+	public LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta) throws SQLException;
 
 	public LinkedList<Soba> vratiSaTerasom() throws SQLException;
 

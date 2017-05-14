@@ -69,7 +69,6 @@ public class GlavniProzor extends JFrame {
 						GUIKontroler.otkaziRezervaciju(idRezervacije);
 						JOptionPane.showMessageDialog(contentPane, "Otkazali ste rezervaciju broj "+idRezervacije+".");
 					} catch (SQLException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				}

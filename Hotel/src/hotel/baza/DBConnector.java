@@ -16,7 +16,7 @@ public class DBConnector {
 	Connection con = null;
 
 	String driver = "com.mysql.jdbc.Driver";
-	String url = "jdbc:mysql://localhost:3306/HotelReservations";
+	String url = "jdbc:mysql://localhost:3306/Hotel";
 	String user = "HotelEmployee";
 	String pass = "asus";
 

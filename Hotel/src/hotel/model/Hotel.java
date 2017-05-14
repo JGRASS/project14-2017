@@ -53,9 +53,10 @@ public class Hotel implements HotelInterfejs {
 	 * metoda za vracanje lista svih soba i rezervacija ukoliko ih ima
 	 * 
 	 * @return listaSoba - lista objekata klase SobaPodaci
+	 * @throws SQLException 
 	 */
 	@Override
-	public LinkedList<SobaPodaci> vratiSveSobe() {
+	public LinkedList<SobaPodaci> vratiSveSobe() throws SQLException {
 		return SOVratiSveSobe.izvrsi();
 	}
 
@@ -66,7 +67,7 @@ public class Hotel implements HotelInterfejs {
 	 * @return slobodneSobe - lista soba koje su slobodne
 	 */
 	@Override
-	public LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta) {
+	public LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brKreveta) throws SQLException {
 		return SOIzlistaj.izvrsi(datumOd, datumDo, brKreveta);
 	}
 

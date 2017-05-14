@@ -41,7 +41,7 @@ public class SobaTableModel extends AbstractTableModel {
 		case 2:
 			return s.getBrojKreveta();
 		case 3:
-			return s.isTerasa();
+			if(s.isTerasa()) return "Ima"; else return "Nema";
 		case 4:
 			return s.getSprat();
 		default:
