@@ -84,7 +84,7 @@ public class Rezervacija {
 	}
 
 	public void setImeGosta(String imeGosta) {
-		if(imeGosta.isEmpty()) throw new RuntimeException();
+		if(imeGosta.isEmpty() || imeGosta==null) throw new RuntimeException();
 		this.imeGosta = imeGosta;
 	}
 
@@ -102,6 +102,7 @@ public class Rezervacija {
 	}
 
 	public void setDatumOd(GregorianCalendar datumOd) {
+		if(datumOd==null) throw new RuntimeException();
 		this.datumOd = datumOd;
 	}
 
@@ -110,6 +111,8 @@ public class Rezervacija {
 	}
 
 	public void setDatumDo(GregorianCalendar datumDo) {
+		if(datumDo==null) throw new RuntimeException();
+
 		this.datumDo = datumDo;
 	}
 

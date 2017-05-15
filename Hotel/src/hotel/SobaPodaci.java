@@ -85,6 +85,7 @@ public class SobaPodaci {
 	}
 
 	public void setIdRezervacije(int idRezervacije) {
+		if(idRezervacije<0) throw new RuntimeException();
 		this.idRezervacije = idRezervacije;
 	}
 
@@ -93,6 +94,7 @@ public class SobaPodaci {
 	}
 
 	public void setImeGosta(String imeGosta) {
+		if(imeGosta.isEmpty() || imeGosta==null) throw new RuntimeException();
 		this.imeGosta = imeGosta;
 	}
 
@@ -101,6 +103,7 @@ public class SobaPodaci {
 	}
 
 	public void setPrezimeGosta(String prezimeGosta) {
+		if(prezimeGosta.isEmpty() || prezimeGosta==null) throw new RuntimeException();
 		this.prezimeGosta = prezimeGosta;
 	}
 

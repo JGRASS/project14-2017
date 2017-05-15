@@ -15,7 +15,6 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import java.awt.FlowLayout;
 import java.awt.HeadlessException;
 
 import javax.swing.JScrollPane;
