@@ -13,6 +13,8 @@ import hotel.model.Hotel;
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.HeadlessException;
@@ -22,20 +24,35 @@ import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import java.awt.Toolkit;
 
+/**
+ * @author jelica
+ *
+ */
 @SuppressWarnings("serial")
 public class GlavniProzor extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textFieldIDRez;
+	
 
 	/**
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(GlavniProzor.class.getResource("/icon/hotel.png")));
+		
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent arg0) {
+				GUIKontroler.ugasiAplikaciju();
+			}
+		});
+		
 		setTitle("Hotelske rezervacije");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 647, 452);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -67,7 +84,7 @@ public class GlavniProzor extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				int i = table.getSelectedRow();
 
-				if (i == -1 || table.getValueAt(table.getSelectedRow(), 4)== "Ne postoji") {
+				if (i == -1 || table.getValueAt(table.getSelectedRow(), 4) == "Ne postoji") {
 					JOptionPane.showMessageDialog(contentPane,
 							"Izaberite sobu sa rezervacijom koju zelite da otkazete!", "Greska!!!",
 							JOptionPane.ERROR_MESSAGE);
@@ -95,7 +112,7 @@ public class GlavniProzor extends JFrame {
 							"Greska!!!", JOptionPane.ERROR_MESSAGE);
 				} else
 					try {
-						if(GUIKontroler.otkaziRezervaciju(Integer.parseInt(textFieldIDRez.getText())) == false){
+						if (GUIKontroler.otkaziRezervaciju(Integer.parseInt(textFieldIDRez.getText())) == false) {
 							JOptionPane.showMessageDialog(contentPane, "Upisite broj rezervacije koja postoji!",
 									"Greska!!!", JOptionPane.ERROR_MESSAGE);
 						} else {
@@ -106,8 +123,8 @@ public class GlavniProzor extends JFrame {
 										"Otkazali ste rezervaciju broj " + idRezervacije + ".");
 							} catch (SQLException e1) {
 								e1.printStackTrace();
-								JOptionPane.showMessageDialog(contentPane, "Ne postoji data rezervacija!",
-										"Greska!!!", JOptionPane.ERROR_MESSAGE);
+								JOptionPane.showMessageDialog(contentPane, "Ne postoji data rezervacija!", "Greska!!!",
+										JOptionPane.ERROR_MESSAGE);
 							}
 						}
 					} catch (NumberFormatException e) {
@@ -121,26 +138,44 @@ public class GlavniProzor extends JFrame {
 						e.printStackTrace();
 					}
 			}
-		});btnOtkaziPrekoId.setPreferredSize(new Dimension(119,23));panel.add(btnOtkaziPrekoId);
+		});
+		btnOtkaziPrekoId.setPreferredSize(new Dimension(119, 23));
+		panel.add(btnOtkaziPrekoId);
 
-	JLabel lblId = new JLabel("Broj rezervacije:");
-	lblId.setBounds(10, 349, 93, 14);panel.add(lblId);
+		JLabel lblId = new JLabel("Broj rezervacije:");
+		lblId.setBounds(10, 349, 93, 14);
+		panel.add(lblId);
 
-	textFieldIDRez=new JTextField();
-	textFieldIDRez.setBounds(10, 374, 36, 20);panel.add(textFieldIDRez);textFieldIDRez.setColumns(10);
+		textFieldIDRez = new JTextField();
+		textFieldIDRez.setBounds(10, 374, 36, 20);
+		panel.add(textFieldIDRez);
+		textFieldIDRez.setColumns(10);
+		
+		JButton btnSobe = new JButton("Sobe");
+		btnSobe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PrikaziProzor pp = new PrikaziProzor();
+				pp.setVisible(true);
+				pp.setLocationRelativeTo(null);
+			}
+		});
+		btnSobe.setBounds(10, 174, 119, 23);
+		panel.add(btnSobe);
+		
+		JLabel lblPregledSoba = new JLabel("Pregled soba");
+		lblPregledSoba.setBounds(11, 149, 129, 14);
+		panel.add(lblPregledSoba);
 
-	JScrollPane scrollPane = new JScrollPane();scrollPane.setBackground(Color.WHITE);contentPane.add(scrollPane,BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBackground(Color.WHITE);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
 
-	try
-	{
-		table = getTable();
-		scrollPane.setViewportView(table);
-		scrollPane.setViewportView(table);
-	}catch(
-	SQLException e)
-	{
-		e.printStackTrace();
-	}
+		try {
+			table = getTable();
+			scrollPane.setViewportView(table);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private JTable getTable() throws SQLException {
@@ -158,4 +193,6 @@ public class GlavniProzor extends JFrame {
 		SobaPodaciTableModel model = new SobaPodaciTableModel(hotel.vratiSveSobe());
 		table.setModel(model);
 	}
+	
+	
 }

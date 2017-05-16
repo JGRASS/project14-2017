@@ -1,6 +1,7 @@
 package hotel.gui;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.sql.SQLException;
@@ -22,11 +23,17 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Toolkit;
 
+/**
+ * @author veljko
+ *
+ */
 @SuppressWarnings("serial")
 public class RezervisiProzor extends JFrame {
 	public RezervisiProzor() {
-		
+		setIconImage(Toolkit.getDefaultToolkit().getImage(RezervisiProzor.class.getResource("/icon/hotel.png")));
+
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		setBounds(100, 100, 680, 452);
 
@@ -34,7 +41,7 @@ public class RezervisiProzor extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		
+
 		JPanel panel = new JPanel();
 		getContentPane().add(panel, BorderLayout.NORTH);
 
@@ -194,9 +201,9 @@ public class RezervisiProzor extends JFrame {
 		JButton btnRezervisi = new JButton("Rezervisi");
 		btnRezervisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String ime=textFieldIme.getText();
-				String prezime=textFieldPrezime.getText();
-				if(ime.isEmpty() || prezime.isEmpty()){
+				String ime = textFieldIme.getText();
+				String prezime = textFieldPrezime.getText();
+				if (ime.isEmpty() || prezime.isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Neispravan unos imena ili prezimena!", "GRESKA",
 							JOptionPane.ERROR_MESSAGE);
 					return;
@@ -209,19 +216,22 @@ public class RezervisiProzor extends JFrame {
 				datumDo.set(Integer.parseInt(comboBoxGodinaDatumDo.getSelectedItem().toString()),
 						Integer.parseInt(comboBoxMesecDatumDo.getSelectedItem().toString()) - 1,
 						Integer.parseInt(comboBoxDanDatumDo.getSelectedItem().toString()));
-				
+
 				int i = table.getSelectedRow();
-				
+
 				if (i == -1) {
-					JOptionPane.showMessageDialog(contentPane, "Izaberite sobu koju zelite da rezervisete!", "Greska!!!",
-							JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(contentPane, "Izaberite sobu koju zelite da rezervisete!",
+							"Greska!!!", JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
 						int idSobe = (int) table.getValueAt(table.getSelectedRow(), 0);
 						int idRez = GUIKontroler.rezervisi(idSobe, ime, prezime, datumOd, datumDo);
-						JOptionPane.showMessageDialog(contentPane, "Uspesno ste rezervisali sobu na ime: "+ime+" "+prezime+" brojRezervacije: "+idRez);
-						
-						setVisible(false); // treba da se namesti da pri zatvaranju glavni prozor ostane aktivan
+						JOptionPane.showMessageDialog(contentPane, "Uspesno ste rezervisali sobu na ime: " + ime + " "
+								+ prezime + " brojRezervacije: " + idRez);
+
+						setVisible(false); // treba da se namesti da pri
+											// zatvaranju glavni prozor ostane
+											// aktivan
 					} catch (SQLException e1) {
 						e1.printStackTrace();
 					}
@@ -236,9 +246,20 @@ public class RezervisiProzor extends JFrame {
 
 		scrollPane.setViewportView(table);
 
-		btnProveriSlobodneSobe.addActionListener(new ActionListener() { //sve radi sem da kad jednom izlista sobe (npr 3krevetne)
-			public void actionPerformed(ActionEvent e) {                //ako promenis na 2krevetne i opet trazis da izlsita
-				try {													//lista se ne apdejtue (nista se ne desi)
+		btnProveriSlobodneSobe.addActionListener(new ActionListener() { // sve
+																		// radi
+																		// sem
+																		// da
+																		// kad
+																		// jednom
+																		// izlista
+																		// sobe
+																		// (npr
+																		// 3krevetne)
+			public void actionPerformed(ActionEvent e) { // ako promenis na
+															// 2krevetne i opet
+															// trazis da izlsita
+				try { // lista se ne apdejtue (nista se ne desi)
 					GregorianCalendar datumOd = new GregorianCalendar();
 					datumOd.set(Integer.parseInt(comboBoxGodinaDatumOd.getSelectedItem().toString()),
 							Integer.parseInt(comboBoxMesecDatumOd.getSelectedItem().toString()) - 1,
@@ -249,7 +270,8 @@ public class RezervisiProzor extends JFrame {
 							Integer.parseInt(comboBoxDanDatumDo.getSelectedItem().toString()));
 					int brojKreveta = Integer.parseInt(comboBoxBrojKreveta.getSelectedItem().toString());
 
-					if (datumDo.before(datumOd) || datumOd.equals(datumDo) || datumOd.before(new GregorianCalendar()) || datumDo.before(new GregorianCalendar())) {
+					if (datumDo.before(datumOd) || datumOd.equals(datumDo) || datumOd.before(new GregorianCalendar())
+							|| datumDo.before(new GregorianCalendar())) {
 						JOptionPane.showMessageDialog(contentPane, "Neispravan unos datuma!", "GRESKA",
 								JOptionPane.ERROR_MESSAGE);
 						return;
@@ -267,18 +289,20 @@ public class RezervisiProzor extends JFrame {
 	private JTextField textFieldIme;
 	private JTextField textFieldPrezime;
 	private JPanel contentPane;
+
 	private JTable getTable(GregorianCalendar datumOd, GregorianCalendar datumDo, int brojKreveta) throws SQLException {
 		Hotel hotel = new Hotel();
-		if (table == null) {
-			table = new JTable();
-			if(GUIKontroler.izlistaj(datumOd, datumDo, brojKreveta).isEmpty()){
-				JOptionPane.showMessageDialog(contentPane, "Nazalost, nema takvih slobodnih soba.", "GRESKA",
-						JOptionPane.ERROR_MESSAGE);
-				return null;
-			}
-			SobaTableModel model = new SobaTableModel(hotel.izlistaj(datumOd, datumDo, brojKreveta));
-			table.setModel(model);
+
+		table = new JTable();
+		if (GUIKontroler.izlistaj(datumOd, datumDo, brojKreveta).isEmpty()
+				|| GUIKontroler.izlistaj(datumOd, datumDo, brojKreveta) == null) {
+			JOptionPane.showMessageDialog(contentPane, "Nazalost, nema takvih slobodnih soba.", "GRESKA",
+					JOptionPane.ERROR_MESSAGE);
+			return null;
 		}
+		SobaTableModel model = new SobaTableModel(hotel.izlistaj(datumOd, datumDo, brojKreveta));
+		table.setModel(model);
+
 		return table;
 	}
 

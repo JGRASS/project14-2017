@@ -6,6 +6,12 @@ import javax.swing.table.AbstractTableModel;
 
 import hotel.SobaPodaci;
 
+/**
+ *  Klasa koja predstavlja tabelu sa atributima klase SobaPodaci
+ * @author jelica
+ *
+ */
+
 @SuppressWarnings("serial")
 public class SobaPodaciTableModel extends AbstractTableModel {
 	private final String[] kolone = new String[] { "Broj sobe", "Broj kreveta", "Sprat", "Terasa","Broj rezervacije", "DatumOd", "DatumDo" };

@@ -5,7 +5,11 @@ import java.util.LinkedList;
 import javax.swing.table.AbstractTableModel;
 
 import hotel.Soba;
-
+/**
+ * Klasa koja predstavlja tabelu sa atributima klase Soba
+ * @author jelica
+ *
+ */
 @SuppressWarnings("serial")
 public class SobaTableModel extends AbstractTableModel {
 

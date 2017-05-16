@@ -13,11 +13,26 @@ import java.sql.SQLException;
 
 public class DBConnector {
 
+	/**
+	 * Veza
+	 */
 	Connection con = null;
 
+	/**
+	 * Driver za povezivanje
+	 */
 	String driver = "com.mysql.jdbc.Driver";
+	/**
+	 * URL baze
+	 */
 	String url = "jdbc:mysql://localhost:3306/Hotelreservations";
+	/**
+	 * Naziv korisnika baze
+	 */
 	String user = "HotelEmployee";
+	/**
+	 * Password korisnika baze
+	 */
 	String pass = "asus";
 
 	/**

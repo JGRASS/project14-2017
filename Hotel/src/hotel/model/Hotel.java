@@ -40,7 +40,7 @@ public class Hotel implements HotelInterfejs {
 
 	/**
 	 * Metoda za otkazivanje rezervacije sobe (sluzice da klikom na sobu u
-	 * tabeli u GUI-ju obrisemo rezervaciju)
+	 * tabeli u GUI-ju ili upisom broja rezervacije obrisemo rezervaciju)
 	 * 
 	 * @throws SQLException
 	 */
