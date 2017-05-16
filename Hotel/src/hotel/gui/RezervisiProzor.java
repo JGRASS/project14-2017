@@ -203,7 +203,8 @@ public class RezervisiProzor extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String ime = textFieldIme.getText();
 				String prezime = textFieldPrezime.getText();
-				if (ime.isEmpty() || prezime.isEmpty()) {
+
+				if (ime.isEmpty() || prezime.isEmpty() || proveriTekst(ime) || proveriTekst(prezime)) {
 					JOptionPane.showMessageDialog(contentPane, "Neispravan unos imena ili prezimena!", "GRESKA",
 							JOptionPane.ERROR_MESSAGE);
 					return;
@@ -216,6 +217,13 @@ public class RezervisiProzor extends JFrame {
 				datumDo.set(Integer.parseInt(comboBoxGodinaDatumDo.getSelectedItem().toString()),
 						Integer.parseInt(comboBoxMesecDatumDo.getSelectedItem().toString()) - 1,
 						Integer.parseInt(comboBoxDanDatumDo.getSelectedItem().toString()));
+
+				if (table == null) {
+					JOptionPane.showMessageDialog(contentPane,
+							"Morate ucitati sobe i izabrati onu koju hocete da rezervisete!", "Greska!!!",
+							JOptionPane.ERROR_MESSAGE);
+					return;
+				}
 
 				int i = table.getSelectedRow();
 
@@ -246,20 +254,9 @@ public class RezervisiProzor extends JFrame {
 
 		scrollPane.setViewportView(table);
 
-		btnProveriSlobodneSobe.addActionListener(new ActionListener() { // sve
-																		// radi
-																		// sem
-																		// da
-																		// kad
-																		// jednom
-																		// izlista
-																		// sobe
-																		// (npr
-																		// 3krevetne)
-			public void actionPerformed(ActionEvent e) { // ako promenis na
-															// 2krevetne i opet
-															// trazis da izlsita
-				try { // lista se ne apdejtue (nista se ne desi)
+		btnProveriSlobodneSobe.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
 					GregorianCalendar datumOd = new GregorianCalendar();
 					datumOd.set(Integer.parseInt(comboBoxGodinaDatumOd.getSelectedItem().toString()),
 							Integer.parseInt(comboBoxMesecDatumOd.getSelectedItem().toString()) - 1,
@@ -309,6 +306,13 @@ public class RezervisiProzor extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+
+	private boolean proveriTekst(String t) {
+		if (t.matches(".*\\d.*"))
+			return true;
+		return false;
+	}
+
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {

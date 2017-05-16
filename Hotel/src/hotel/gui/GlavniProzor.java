@@ -42,6 +42,8 @@ public class GlavniProzor extends JFrame {
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
+		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GlavniProzor.class.getResource("/icon/hotel.png")));
 		
 		addWindowListener(new WindowAdapter() {
@@ -78,9 +80,9 @@ public class GlavniProzor extends JFrame {
 		btnRezervisiSobu.setPreferredSize(new Dimension(119, 23));
 		panel.add(btnRezervisiSobu);
 
-		JButton btnNewButton = new JButton("Otkazi rezervaciju");
-		btnNewButton.setBounds(10, 39, 119, 23);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnOtkaziNaKlik = new JButton("Otkazi rezervaciju");
+		btnOtkaziNaKlik.setBounds(10, 39, 119, 23);
+		btnOtkaziNaKlik.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int i = table.getSelectedRow();
 
@@ -101,8 +103,8 @@ public class GlavniProzor extends JFrame {
 
 			}
 		});
-		panel.add(btnNewButton);
-
+		panel.add(btnOtkaziNaKlik);
+		btnOtkaziNaKlik.setToolTipText("Otkazite rezervaciju tako sto cete je selektovati u tabeli i kliknuti ovo dugme");
 		JButton btnOtkaziPrekoId = new JButton("Otkazi  ");
 		btnOtkaziPrekoId.setBounds(0, 315, 120, 23);
 		btnOtkaziPrekoId.addActionListener(new ActionListener() {
@@ -141,9 +143,9 @@ public class GlavniProzor extends JFrame {
 		});
 		btnOtkaziPrekoId.setPreferredSize(new Dimension(119, 23));
 		panel.add(btnOtkaziPrekoId);
-
-		JLabel lblId = new JLabel("Broj rezervacije:");
-		lblId.setBounds(10, 349, 93, 14);
+		btnOtkaziPrekoId.setToolTipText("Otkazite zeljenu rezervaciju preko njenog id-a");
+		JLabel lblId = new JLabel("Broj rezervacije");
+		lblId.setBounds(10, 349, 120, 14);
 		panel.add(lblId);
 
 		textFieldIDRez = new JTextField();

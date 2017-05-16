@@ -67,7 +67,6 @@ public class SOVratiSveSobe {
 						datumDo.setTime(rs2.getDate(6));
 						rezSobe.setDatumDo(datumDo);
 						listaSoba.addLast(rezSobe);
-						System.out.println(rezSobe);
 						ubacena = true;
 					}
 					
