@@ -9,16 +9,15 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import hotel.gui.modeli.SobaTableModel;
-import hotel.model.Hotel;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import java.awt.Toolkit;
+
 /**
  * @author jelica
  *
@@ -66,12 +65,17 @@ public class PrikaziProzor extends JFrame {
 		JButton btnPrikaziSaTerasom = new JButton("Prikazi sa terasom");
 		btnPrikaziSaTerasom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					table = getTableT();
-					scrollPane.setViewportView(table);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
+				
+					table = new JTable();
+					SobaTableModel model;
+					if(GUIKontroler.vratiSaTerasom() == null || GUIKontroler.vratiSaTerasom().isEmpty()) {
+						JOptionPane.showMessageDialog(contentPane, "Ne postoji soba sa terasom! ", "Greska!!!",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						model = new SobaTableModel(GUIKontroler.vratiSaTerasom());
+						table.setModel(model);
+						scrollPane.setViewportView(table);
+					}
 			}
 		});
 		panel_1.add(btnPrikaziSaTerasom);
@@ -99,68 +103,48 @@ public class PrikaziProzor extends JFrame {
 		comboBoxKreveti.addItem(5);
 		btnPrikaziSaBrojem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Hotel hotel = new Hotel();
 
 				table = new JTable();
 				SobaTableModel model;
-				try {
-					if (hotel.vratiSaKrevetom((int) comboBoxKreveti.getSelectedItem()) == null
-							|| hotel.vratiSaKrevetom((int) comboBoxKreveti.getSelectedItem()).isEmpty()) {
-						JOptionPane.showMessageDialog(
-								contentPane, "Ne postoji soba sa datim brojem kreveta("
-										+ (int) comboBoxKreveti.getSelectedItem() + ")! ",
-								"Greska!!!", JOptionPane.ERROR_MESSAGE);
+				int brojKreveta = ((int) comboBoxKreveti.getSelectedItem());
 
-					} else {
-						model = new SobaTableModel(hotel.vratiSaKrevetom((int) comboBoxKreveti.getSelectedItem()));
-						table.setModel(model);
-						scrollPane.setViewportView(table);
-					}
-				} catch (SQLException e) {
-					JOptionPane.showMessageDialog(
-							contentPane, "Ne postoji soba sa datim brojem kreveta("
-									+ (int) comboBoxKreveti.getSelectedItem() + ")! ",
-							"Greska!!!", JOptionPane.ERROR_MESSAGE);
+				if (GUIKontroler.vratiSaKrevetom(brojKreveta) == null
+						|| GUIKontroler.vratiSaKrevetom(brojKreveta).isEmpty()) {
+					JOptionPane.showMessageDialog(contentPane,
+							"Ne postoji soba sa datim brojem kreveta(" + brojKreveta + ")! ", "Greska!!!",
+							JOptionPane.ERROR_MESSAGE);
+
+				} else {
+					model = new SobaTableModel(GUIKontroler.vratiSaKrevetom(brojKreveta));
+					table.setModel(model);
+					scrollPane.setViewportView(table);
 				}
+
 			}
 		});
 
 		btnPrikaziNaSpratu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Hotel hotel = new Hotel();
 
 				table = new JTable();
 				SobaTableModel model;
-				try {
-					if (hotel.vratiSprat((int) comboBoxSprat.getSelectedItem()) == null
-							|| hotel.vratiSprat((int) comboBoxSprat.getSelectedItem()).isEmpty()) {
-						JOptionPane.showMessageDialog(contentPane,
-								"Ne postoji soba na " + (int) comboBoxSprat.getSelectedItem() + " spratu!", "Greska!!!",
-								JOptionPane.ERROR_MESSAGE);
+				int sprat = ((int) comboBoxSprat.getSelectedItem());
 
-					} else {
-						model = new SobaTableModel(hotel.vratiSprat((int) comboBoxSprat.getSelectedItem()));
-						table.setModel(model);
-						scrollPane.setViewportView(table);
-					}
-				} catch (SQLException e) {
+				if (GUIKontroler.vratiSprat(sprat) == null || GUIKontroler.vratiSprat(sprat).isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane,
 							"Ne postoji soba na " + (int) comboBoxSprat.getSelectedItem() + " spratu!", "Greska!!!",
 							JOptionPane.ERROR_MESSAGE);
+
+				} else {
+					model = new SobaTableModel(GUIKontroler.vratiSprat(sprat));
+					table.setModel(model);
+					scrollPane.setViewportView(table);
 				}
 
 			}
 		});
 	}
 
-	private JTable getTableT() throws SQLException {
-		Hotel hotel = new Hotel();
-
-		table = new JTable();
-		SobaTableModel model = new SobaTableModel(hotel.vratiSaTerasom());
-		table.setModel(model);
-
-		return table;
-	}
+	
 
 }
