@@ -162,5 +162,5 @@ public class GlavniProzor extends JFrame {
 			model.ucitajSobe(GUIKontroler.vratiSveSobe());
 		}
 	}
-
+	
 }

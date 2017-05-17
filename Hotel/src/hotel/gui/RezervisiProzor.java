@@ -4,14 +4,12 @@ import java.awt.BorderLayout;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-import java.sql.SQLException;
 import java.util.GregorianCalendar;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import hotel.gui.modeli.SobaTableModel;
-import hotel.model.Hotel;
 
 import javax.swing.JTable;
 import javax.swing.JScrollPane;
@@ -249,7 +247,6 @@ public class RezervisiProzor extends JFrame {
 
 		btnProveriSlobodneSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				try {
 					GregorianCalendar datumOd = new GregorianCalendar();
 					datumOd.set(Integer.parseInt(comboBoxGodinaDatumOd.getSelectedItem().toString()),
 							Integer.parseInt(comboBoxMesecDatumOd.getSelectedItem().toString()) - 1,
@@ -268,9 +265,6 @@ public class RezervisiProzor extends JFrame {
 					}
 					table = getTable(datumOd, datumDo, brojKreveta);
 					scrollPane.setViewportView(table);
-				} catch (SQLException e1) {
-					e1.printStackTrace();
-				}
 			}
 		});
 	}
@@ -280,9 +274,7 @@ public class RezervisiProzor extends JFrame {
 	private JTextField textFieldPrezime;
 	private JPanel contentPane;
 
-	private JTable getTable(GregorianCalendar datumOd, GregorianCalendar datumDo, int brojKreveta) throws SQLException {
-		Hotel hotel = new Hotel();
-
+	private JTable getTable(GregorianCalendar datumOd, GregorianCalendar datumDo, int brojKreveta) {
 		table = new JTable();
 		if (GUIKontroler.izlistaj(datumOd, datumDo, brojKreveta).isEmpty()
 				|| GUIKontroler.izlistaj(datumOd, datumDo, brojKreveta) == null) {
@@ -290,7 +282,7 @@ public class RezervisiProzor extends JFrame {
 					JOptionPane.ERROR_MESSAGE);
 			return null;
 		}
-		SobaTableModel model = new SobaTableModel(hotel.izlistaj(datumOd, datumDo, brojKreveta));
+		SobaTableModel model = new SobaTableModel(GUIKontroler.izlistaj(datumOd, datumDo, brojKreveta));
 		table.setModel(model);
 
 		return table;

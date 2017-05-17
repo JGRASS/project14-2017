@@ -25,7 +25,7 @@ public class DBConnector {
 	/**
 	 * URL baze
 	 */
-	String url = "jdbc:mysql://localhost:3306/HotelReservations";
+	String url = "jdbc:mysql://localhost:3306/Hotel";
 	/**
 	 * Naziv korisnika baze
 	 */
