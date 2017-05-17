@@ -231,18 +231,11 @@ public class RezervisiProzor extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Izaberite sobu koju zelite da rezervisete!",
 							"Greska!!!", JOptionPane.ERROR_MESSAGE);
 				} else {
-					try {
-						int idSobe = (int) table.getValueAt(table.getSelectedRow(), 0);
-						int idRez = GUIKontroler.rezervisi(idSobe, ime, prezime, datumOd, datumDo);
-						JOptionPane.showMessageDialog(contentPane, "Uspesno ste rezervisali sobu na ime: " + ime + " "
-								+ prezime + " brojRezervacije: " + idRez);
-
-						setVisible(false); // treba da se namesti da pri
-											// zatvaranju glavni prozor ostane
-											// aktivan
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
+					int idSobe = (int) table.getValueAt(table.getSelectedRow(), 0);
+					int idRez = GUIKontroler.rezervisi(idSobe, ime, prezime, datumOd, datumDo);
+					JOptionPane.showMessageDialog(contentPane, "Uspesno ste rezervisali sobu na ime: " + ime + " "
+							+ prezime + " brojRezervacije: " + idRez);
+					setVisible(false);
 				}
 			}
 		});

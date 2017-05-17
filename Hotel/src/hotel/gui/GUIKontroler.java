@@ -63,18 +63,23 @@ public class GUIKontroler {
 			}
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji data rezervacija!",
-					"Greska!!!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji data rezervacija!", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	public static int rezervisi(int idSobe, String ime, String prezime, GregorianCalendar datumOd,
-			GregorianCalendar datumDo) throws SQLException {
+			GregorianCalendar datumDo) {
 		Hotel hotel = new Hotel();
-		int rezervacija = hotel.rezervisiSobu(idSobe, ime, prezime, datumOd, datumDo);
-		glavniProzor.osveziTabelu();
+		int rezervacija=-1;
+		try {
+			rezervacija = hotel.rezervisiSobu(idSobe, ime, prezime, datumOd, datumDo);
+			glavniProzor.osveziTabelu();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Doslo je do greske, pokusajte ponovo.", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
+		}
 		return rezervacija;
-
 	}
 
 	public static LinkedList<Soba> izlistaj(GregorianCalendar datumOd, GregorianCalendar datumDo, int brojKreveta) {
@@ -83,8 +88,8 @@ public class GUIKontroler {
 			LinkedList<Soba> sobe = hotel.izlistaj(datumOd, datumDo, brojKreveta);
 			return sobe;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Doslo je do greske, pokusajte ponovo.", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
 		}
 		return null;
 	}
