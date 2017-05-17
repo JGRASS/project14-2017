@@ -18,6 +18,7 @@ import hotel.model.Hotel;
 public class GUIKontroler {
 
 	private static GlavniProzor glavniProzor;
+	private static Hotel hotel = new Hotel();
 
 	/**
 	 * Launch the application.
@@ -36,11 +37,35 @@ public class GUIKontroler {
 		});
 	}
 
-	public static boolean otkaziRezervaciju(int idRezervacije) throws SQLException {
-		Hotel hotel = new Hotel();
-		boolean otkazana = hotel.otkaziRezervaciju(idRezervacije);
-		glavniProzor.osveziTabelu();
-		return otkazana;
+	public static void otkaziRezervacijuNaKlik(int idRezervacije) {
+		try {
+			hotel.otkaziRezervaciju(idRezervacije);
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Otkazali ste rezervaciju broj " + idRezervacije + ".");
+			glavniProzor.osveziTabelu();
+
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Doslo je do greske, pokusajte ponovo!",
+					"Greska!!!", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
+	public static void otkaziRezervacijuID(int idRezervacije) {
+		try {
+			boolean otkazana = hotel.otkaziRezervaciju(idRezervacije);
+			if (otkazana == true) {
+				JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+						"Otkazali ste rezervaciju broj " + idRezervacije + ".");
+				glavniProzor.osveziTabelu();
+			} else {
+				JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Upisite broj rezervacije koja postoji!",
+						"Greska!!!", JOptionPane.ERROR_MESSAGE);
+			}
+
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji data rezervacija!",
+					"Greska!!!", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	public static int rezervisi(int idSobe, String ime, String prezime, GregorianCalendar datumOd,
@@ -83,8 +108,8 @@ public class GUIKontroler {
 	}
 
 	public static void ugasiAplikaciju() {
-		int opcija = JOptionPane.showConfirmDialog(glavniProzor, "Da li zelite da zatvorite program?", "Zatvaranje aplikacije",
-				JOptionPane.YES_NO_CANCEL_OPTION);
+		int opcija = JOptionPane.showConfirmDialog(glavniProzor, "Da li zelite da zatvorite program?",
+				"Zatvaranje aplikacije", JOptionPane.YES_NO_CANCEL_OPTION);
 		if (opcija == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}

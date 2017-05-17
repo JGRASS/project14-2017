@@ -17,7 +17,6 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
-import java.awt.HeadlessException;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -36,23 +35,21 @@ public class GlavniProzor extends JFrame {
 	private JPanel contentPane;
 	private JTable table;
 	private JTextField textFieldIDRez;
-	
 
 	/**
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
-		
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(GlavniProzor.class.getResource("/icon/hotel.png")));
-		
+
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent arg0) {
 				GUIKontroler.ugasiAplikaciju();
 			}
 		});
-		
+
 		setTitle("Hotelske rezervacije");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 647, 452);
@@ -91,20 +88,15 @@ public class GlavniProzor extends JFrame {
 							"Izaberite sobu sa rezervacijom koju zelite da otkazete!", "Greska!!!",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
-					try {
-						int idRezervacije = (int) table.getValueAt(table.getSelectedRow(), 4);
-						GUIKontroler.otkaziRezervaciju(idRezervacije);
-						JOptionPane.showMessageDialog(contentPane,
-								"Otkazali ste rezervaciju broj " + idRezervacije + ".");
-					} catch (SQLException e1) {
-						e1.printStackTrace();
-					}
+					int idRezervacije = (int) table.getValueAt(table.getSelectedRow(), 4);
+					GUIKontroler.otkaziRezervacijuNaKlik(idRezervacije);
 				}
 
 			}
 		});
 		panel.add(btnOtkaziNaKlik);
-		btnOtkaziNaKlik.setToolTipText("Otkazite rezervaciju tako sto cete je selektovati u tabeli i kliknuti ovo dugme");
+		btnOtkaziNaKlik
+				.setToolTipText("Otkazite rezervaciju tako sto cete je selektovati u tabeli i kliknuti ovo dugme");
 		JButton btnOtkaziPrekoId = new JButton("Otkazi  ");
 		btnOtkaziPrekoId.setBounds(0, 315, 120, 23);
 		btnOtkaziPrekoId.addActionListener(new ActionListener() {
@@ -112,33 +104,10 @@ public class GlavniProzor extends JFrame {
 				if (textFieldIDRez == null || textFieldIDRez.getText() == null || textFieldIDRez.getText().isEmpty()) {
 					JOptionPane.showMessageDialog(contentPane, "Upisite broj rezervacije koju zelite da otkazete!",
 							"Greska!!!", JOptionPane.ERROR_MESSAGE);
-				} else
-					try {
-						if (GUIKontroler.otkaziRezervaciju(Integer.parseInt(textFieldIDRez.getText())) == false) {
-							JOptionPane.showMessageDialog(contentPane, "Upisite broj rezervacije koja postoji!",
-									"Greska!!!", JOptionPane.ERROR_MESSAGE);
-						} else {
-							try {
-								int idRezervacije = Integer.parseInt(textFieldIDRez.getText());
-								GUIKontroler.otkaziRezervaciju(idRezervacije);
-								JOptionPane.showMessageDialog(contentPane,
-										"Otkazali ste rezervaciju broj " + idRezervacije + ".");
-							} catch (SQLException e1) {
-								e1.printStackTrace();
-								JOptionPane.showMessageDialog(contentPane, "Ne postoji data rezervacija!", "Greska!!!",
-										JOptionPane.ERROR_MESSAGE);
-							}
-						}
-					} catch (NumberFormatException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (HeadlessException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+				} else {
+					int idRezervacije = Integer.parseInt(textFieldIDRez.getText());
+					GUIKontroler.otkaziRezervacijuID(idRezervacije);
+				}
 			}
 		});
 		btnOtkaziPrekoId.setPreferredSize(new Dimension(119, 23));
@@ -152,7 +121,7 @@ public class GlavniProzor extends JFrame {
 		textFieldIDRez.setBounds(10, 374, 36, 20);
 		panel.add(textFieldIDRez);
 		textFieldIDRez.setColumns(10);
-		
+
 		JButton btnSobe = new JButton("Sobe");
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -163,7 +132,7 @@ public class GlavniProzor extends JFrame {
 		});
 		btnSobe.setBounds(10, 174, 119, 23);
 		panel.add(btnSobe);
-		
+
 		JLabel lblPregledSoba = new JLabel("Pregled soba");
 		lblPregledSoba.setBounds(11, 149, 129, 14);
 		panel.add(lblPregledSoba);
@@ -195,6 +164,5 @@ public class GlavniProzor extends JFrame {
 		SobaPodaciTableModel model = new SobaPodaciTableModel(hotel.vratiSveSobe());
 		table.setModel(model);
 	}
-	
-	
+
 }
