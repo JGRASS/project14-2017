@@ -135,12 +135,18 @@ public class GlavniProzor extends JFrame {
 		scrollPane.setBackground(Color.WHITE);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
-		table = getTable();
+		try{
+			table = getTable();
+		} catch(Exception e){
+			JOptionPane.showMessageDialog(contentPane, "Neuspelo povezivanje sa bazom!", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		scrollPane.setViewportView(table);
 
 	}
 
-	private JTable getTable(){
+	private JTable getTable() {
 		if (table == null) {
 			table = new JTable();
 			SobaPodaciTableModel model = new SobaPodaciTableModel(GUIKontroler.vratiSveSobe());
@@ -158,5 +164,5 @@ public class GlavniProzor extends JFrame {
 			model.ucitajSobe(GUIKontroler.vratiSveSobe());
 		}
 	}
-	
+
 }

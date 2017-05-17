@@ -31,7 +31,6 @@ public class GUIKontroler {
 					glavniProzor = new GlavniProzor();
 					glavniProzor.setVisible(true);
 					glavniProzor.setLocationRelativeTo(null);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
