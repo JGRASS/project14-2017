@@ -99,8 +99,13 @@ public class GlavniProzor extends JFrame {
 					JOptionPane.showMessageDialog(contentPane, "Upisite broj rezervacije koju zelite da otkazete!",
 							"Greska!!!", JOptionPane.ERROR_MESSAGE);
 				} else {
-					int idRezervacije = Integer.parseInt(textFieldIDRez.getText());
-					GUIKontroler.otkaziRezervacijuID(idRezervacije);
+					try {
+						int idRezervacije = Integer.parseInt(textFieldIDRez.getText());
+						GUIKontroler.otkaziRezervacijuID(idRezervacije);
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(contentPane, "Upisite broj rezervacije koju zelite da otkazete!",
+								"Greska!!!", JOptionPane.ERROR_MESSAGE);
+					}
 				}
 			}
 		});
