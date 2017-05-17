@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Klasa koja sluzi za vezu s bazom
+ * Klasa koja sluzi za povezivanje s bazom
  * 
  * @author veljko
  *
@@ -25,7 +25,7 @@ public class DBConnector {
 	/**
 	 * URL baze
 	 */
-	String url = "jdbc:mysql://localhost:3306/Hotel";
+	String url = "jdbc:mysql://localhost:3306/HotelReservations";
 	/**
 	 * Naziv korisnika baze
 	 */

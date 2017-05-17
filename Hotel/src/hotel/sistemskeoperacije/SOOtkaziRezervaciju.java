@@ -16,6 +16,7 @@ public class SOOtkaziRezervaciju {
 	
 	/**
 	 * Metoda za otkazivanje rezervacije sobe (sluzice da klikom na sobu u tabeli u GUI-ju obrisemo rezervaciju)
+	 * @return postoji - true ili false da li je soba uspesno rezervisana (da li postoji rezervacija)
 	 * @throws SQLException 
 	 */
 	public static boolean izvrsi(int idRezervacije) throws SQLException {

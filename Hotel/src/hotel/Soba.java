@@ -1,42 +1,44 @@
 package hotel;
+
 /**
  * Klasa koja predstavlja sobu
+ * 
  * @author jelica
  *
  */
 public class Soba {
-	
+
 	/**
 	 * Jedinstveni broj sobe
 	 */
 	private int idSobe;
-	
+
 	/**
 	 * Broj kreveta u sobi
 	 */
 	private int brojKreveta;
-	
+
 	/**
 	 * Cena sobe po nocenju
 	 */
 	private int cena;
-	
+
 	/**
 	 * Sprat na kome je soba
 	 */
 	private int sprat;
-	
+
 	/**
 	 * Da li soba ima terasu, true ako ima, false ako nema
 	 */
 	private boolean terasa;
-	
+
 	/**
 	 * prazan konstruktor sobe
 	 */
 	public Soba() {
 	}
-	
+
 	/**
 	 * konstruktor sobe sa svim atributima
 	 */
@@ -52,13 +54,14 @@ public class Soba {
 	/**
 	 * get i set metode za atribute sobe
 	 */
-	
+
 	public int getIdSobe() {
 		return idSobe;
 	}
 
 	public void setIdSobe(int idSobe) {
-		if(idSobe<0) throw new RuntimeException();
+		if (idSobe < 0)
+			throw new RuntimeException();
 		this.idSobe = idSobe;
 	}
 
@@ -67,7 +70,8 @@ public class Soba {
 	}
 
 	public void setBrojKreveta(int brojKreveta) {
-		if(brojKreveta<0) throw new RuntimeException();
+		if (brojKreveta < 0)
+			throw new RuntimeException();
 		this.brojKreveta = brojKreveta;
 	}
 
@@ -76,7 +80,8 @@ public class Soba {
 	}
 
 	public void setCena(int cena) {
-		if(cena<0) throw new RuntimeException();
+		if (cena < 0)
+			throw new RuntimeException();
 		this.cena = cena;
 	}
 
@@ -85,7 +90,8 @@ public class Soba {
 	}
 
 	public void setSprat(int sprat) {
-		if(sprat<0) throw new RuntimeException();
+		if (sprat < 0)
+			throw new RuntimeException();
 		this.sprat = sprat;
 	}
 

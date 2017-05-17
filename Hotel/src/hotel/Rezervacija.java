@@ -1,8 +1,10 @@
 package hotel;
 
 import java.util.GregorianCalendar;
+
 /**
  * Klasa koja predstavlja rezervaciju sobe
+ * 
  * @author jelica
  *
  */
@@ -11,39 +13,38 @@ public class Rezervacija {
 	 * Jedinstveni broj rezervacije
 	 */
 	private int idRezervacije;
-	
+
 	/**
 	 * Jedinstveni broj sobe
 	 */
 	private int idSobe;
-	
+
 	/**
 	 * Ime gosta koji rezervise sobu
 	 */
 	private String imeGosta;
-	
+
 	/**
 	 * Prezime gosta koji rezervise sobu
 	 */
 	private String prezimeGosta;
-	
+
 	/**
 	 * Pocetak rezervacije
 	 */
 	private GregorianCalendar datumOd;
-	
+
 	/**
 	 * Kraj rezervacije
 	 */
 	private GregorianCalendar datumDo;
-	
+
 	/**
 	 * prazan konstruktor rezervacije
 	 */
 	public Rezervacija() {
 	}
 
-	
 	/**
 	 * konstruktor rezervacije sa svim atributima
 	 */
@@ -66,7 +67,8 @@ public class Rezervacija {
 	}
 
 	public void setIdRezervacije(int idRezervacije) {
-		if(idRezervacije<0) throw new RuntimeException();
+		if (idRezervacije < 0)
+			throw new RuntimeException();
 		this.idRezervacije = idRezervacije;
 	}
 
@@ -75,7 +77,8 @@ public class Rezervacija {
 	}
 
 	public void setIdSobe(int idSobe) {
-		if(idSobe<0) throw new RuntimeException();
+		if (idSobe < 0)
+			throw new RuntimeException();
 		this.idSobe = idSobe;
 	}
 
@@ -84,7 +87,8 @@ public class Rezervacija {
 	}
 
 	public void setImeGosta(String imeGosta) {
-		if(imeGosta.isEmpty() || imeGosta==null) throw new RuntimeException();
+		if (imeGosta.isEmpty() || imeGosta == null)
+			throw new RuntimeException();
 		this.imeGosta = imeGosta;
 	}
 
@@ -93,7 +97,8 @@ public class Rezervacija {
 	}
 
 	public void setPrezimeGosta(String prezimeGosta) {
-		if(prezimeGosta.isEmpty()) throw new RuntimeException();
+		if (prezimeGosta.isEmpty())
+			throw new RuntimeException();
 		this.prezimeGosta = prezimeGosta;
 	}
 
@@ -102,7 +107,8 @@ public class Rezervacija {
 	}
 
 	public void setDatumOd(GregorianCalendar datumOd) {
-		if(datumOd==null) throw new RuntimeException();
+		if (datumOd == null)
+			throw new RuntimeException();
 		this.datumOd = datumOd;
 	}
 
@@ -111,7 +117,8 @@ public class Rezervacija {
 	}
 
 	public void setDatumDo(GregorianCalendar datumDo) {
-		if(datumDo==null) throw new RuntimeException();
+		if (datumDo == null)
+			throw new RuntimeException();
 
 		this.datumDo = datumDo;
 	}
