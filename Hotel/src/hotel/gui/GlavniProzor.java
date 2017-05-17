@@ -8,14 +8,12 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import hotel.gui.modeli.SobaPodaciTableModel;
-import hotel.model.Hotel;
 
 import javax.swing.JButton;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 import javax.swing.JScrollPane;
@@ -23,7 +21,7 @@ import javax.swing.JTable;
 import java.awt.Color;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  * @author jelica
@@ -40,8 +38,6 @@ public class GlavniProzor extends JFrame {
 	 * Create the frame.
 	 */
 	public GlavniProzor() {
-
-		setIconImage(Toolkit.getDefaultToolkit().getImage(GlavniProzor.class.getResource("/icon/hotel.png")));
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -123,6 +119,8 @@ public class GlavniProzor extends JFrame {
 		textFieldIDRez.setColumns(10);
 
 		JButton btnSobe = new JButton("Sobe");
+		btnSobe.setToolTipText("Pregled soba po krevetima, spratovima i sa terasama");
+		btnSobe.setSelectedIcon(new ImageIcon(GlavniProzor.class.getResource("/icon/Hotel.png")));
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PrikaziProzor pp = new PrikaziProzor();
@@ -141,28 +139,28 @@ public class GlavniProzor extends JFrame {
 		scrollPane.setBackground(Color.WHITE);
 		contentPane.add(scrollPane, BorderLayout.CENTER);
 
-		try {
-			table = getTable();
-			scrollPane.setViewportView(table);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		table = getTable();
+		scrollPane.setViewportView(table);
+
 	}
 
-	private JTable getTable() throws SQLException {
-		Hotel hotel = new Hotel();
+	private JTable getTable(){
 		if (table == null) {
 			table = new JTable();
-			SobaPodaciTableModel model = new SobaPodaciTableModel(hotel.vratiSveSobe());
+			SobaPodaciTableModel model = new SobaPodaciTableModel(GUIKontroler.vratiSveSobe());
 			table.setModel(model);
 		}
 		return table;
 	}
 
-	public void osveziTabelu() throws SQLException {
-		Hotel hotel = new Hotel();
-		SobaPodaciTableModel model = new SobaPodaciTableModel(hotel.vratiSveSobe());
-		table.setModel(model);
+	public void osveziTabelu() {
+		SobaPodaciTableModel model = (SobaPodaciTableModel) table.getModel();
+		if (GUIKontroler.vratiSveSobe() == null) {
+			JOptionPane.showMessageDialog(contentPane, "Ne postoji nijedna soba!", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
+		} else {
+			model.ucitajSobe(GUIKontroler.vratiSveSobe());
+		}
 	}
 
 }

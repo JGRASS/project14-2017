@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 import hotel.Soba;
+import hotel.SobaPodaci;
 import hotel.model.Hotel;
 
 /**
@@ -63,8 +64,8 @@ public class GUIKontroler {
 			}
 
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji data rezervacija!",
-					"Greska!!!", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji data rezervacija!", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
@@ -89,22 +90,36 @@ public class GUIKontroler {
 		return null;
 	}
 
-	public static LinkedList<Soba> vratiSaTerasom() throws SQLException {
-		Hotel hotel = new Hotel();
-		return hotel.vratiSaTerasom();
+	public static LinkedList<Soba> vratiSaTerasom() {
+		try {
+			return hotel.vratiSaTerasom();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji soba sa terasom! ", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return null;
 
 	}
 
-	public static LinkedList<Soba> vratiSaKrevetom(int brKreveta) throws SQLException {
-		Hotel hotel = new Hotel();
-		return hotel.vratiSaKrevetom(brKreveta);
-
+	public static LinkedList<Soba> vratiSaKrevetom(int brojKreveta) {
+		try {
+			return hotel.vratiSaKrevetom(brojKreveta);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Ne postoji soba sa datim brojem kreveta(" + brojKreveta + ")! ", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return null;
 	}
 
-	public static LinkedList<Soba> vratiSprat(int sprat) throws SQLException {
-		Hotel hotel = new Hotel();
-		return hotel.vratiSprat(sprat);
-
+	public static LinkedList<Soba> vratiSprat(int sprat) {
+		try {
+			return hotel.vratiSprat(sprat);
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(), "Ne postoji soba na " + sprat + " spratu!",
+					"Greska!!!", JOptionPane.ERROR_MESSAGE);
+		}
+		return null;
 	}
 
 	public static void ugasiAplikaciju() {
@@ -113,5 +128,16 @@ public class GUIKontroler {
 		if (opcija == JOptionPane.YES_OPTION) {
 			System.exit(0);
 		}
+	}
+	
+	public static LinkedList<SobaPodaci> vratiSveSobe() {
+		try {
+			return hotel.vratiSveSobe();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(glavniProzor.getContentPane(),
+					"Ne postoji nijedna soba!", "Greska!!!",
+					JOptionPane.ERROR_MESSAGE);
+		}
+		return null;
 	}
 }
