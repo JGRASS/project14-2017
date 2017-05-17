@@ -62,9 +62,7 @@ public class GlavniProzor extends JFrame {
 		btnRezervisiSobu.setBounds(10, 5, 119, 23);
 		btnRezervisiSobu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				RezervisiProzor rp = new RezervisiProzor();
-				rp.setVisible(true);
-				rp.setLocationRelativeTo(null);
+				GUIKontroler.prikaziRezervisiProzor();
 			}
 		});
 		panel.setLayout(null);
@@ -123,9 +121,7 @@ public class GlavniProzor extends JFrame {
 		btnSobe.setSelectedIcon(new ImageIcon(GlavniProzor.class.getResource("/icon/Hotel.png")));
 		btnSobe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				PrikaziProzor pp = new PrikaziProzor();
-				pp.setVisible(true);
-				pp.setLocationRelativeTo(null);
+				GUIKontroler.prikaziPrikaziProzor();
 			}
 		});
 		btnSobe.setBounds(10, 174, 119, 23);

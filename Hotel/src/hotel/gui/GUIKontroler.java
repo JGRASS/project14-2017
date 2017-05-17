@@ -20,7 +20,7 @@ public class GUIKontroler {
 
 	private static GlavniProzor glavniProzor;
 	private static Hotel hotel = new Hotel();
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -31,6 +31,7 @@ public class GUIKontroler {
 					glavniProzor = new GlavniProzor();
 					glavniProzor.setVisible(true);
 					glavniProzor.setLocationRelativeTo(null);
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -144,6 +145,17 @@ public class GUIKontroler {
 					JOptionPane.ERROR_MESSAGE);
 		}
 		return null;
+	}
+	
+	public static void prikaziRezervisiProzor(){
+		RezervisiProzor rp = new RezervisiProzor();
+		rp.setVisible(true);
+		rp.setLocationRelativeTo(null);
+	}
+	public static void prikaziPrikaziProzor(){
+		PrikaziProzor pp = new PrikaziProzor();
+		pp.setVisible(true);
+		pp.setLocationRelativeTo(null);
 	}
 	
 	
